@@ -1,0 +1,168 @@
+productId,productName,price,Category
+1,tropical fruit,7.8,Fresh Food
+2,whole milk,1.8,Dairy
+3,pip fruit,3,Fresh Food
+4,other vegetables,0.8,Fresh Food
+5,rolls/buns,1.2,Bakery & Sweets
+6,pot plants,3.5,Household & Hygiene
+7,citrus fruit,1.5,Fresh Food
+8,beef,19.5,Fresh Food
+9,frankfurter,5.5,Fresh Food
+10,chicken,7.2,Fresh Food
+11,butter,3.2,Dairy
+12,fruit/vegetable juice,2.1,Beverages
+13,packaged fruit/vegetables,3.5,Fresh Food
+14,chocolate,11.5,Bakery & Sweets
+15,specialty bar,5.2,Bakery & Sweets
+16,butter milk,6.1,Dairy
+17,bottled water,0.5,Beverages
+18,yogurt,2.2,Dairy
+19,sausage,3.1,Fresh Food
+20,brown bread,0.8,Bakery & Sweets
+21,hamburger meat,12.3,Fresh Food
+22,root vegetables,1.8,Fresh Food
+23,pork,7.2,Fresh Food
+24,pastry,3.1,Bakery & Sweets
+25,canned beer,1.1,Beverages
+26,berries,10.8,Fresh Food
+27,coffee,8.5,Beverages
+28,misc. beverages,1.2,Beverages
+29,ham,15.2,Fresh Food
+30,turkey,12.5,Fresh Food
+31,curd cheese,9.2,Dairy
+32,red/blush wine,12.2,Beverages
+33,frozen potato products,3,Frozen & Processed Food
+34,flour,2.1,Pantry Staples
+35,sugar,1.2,Bakery & Sweets
+36,frozen meals,9.7,Frozen & Processed Food
+37,herbs,6.5,Fresh Food
+38,soda,0.8,Beverages
+39,detergent,5.5,Household & Hygiene
+40,grapes,9.4,Fresh Food
+41,processed cheese,6.4,Dairy
+42,fish,10.2,Fresh Food
+43,sparkling wine,12.5,Beverages
+44,newspapers,3.2,Specialty & Seasonal
+45,curd,9.8,Dairy
+46,pasta,3.1,Pantry Staples
+47,popcorn,2.4,Bakery & Sweets
+48,finished products,6.5,Frozen & Processed Food
+49,beverages,1.1,Beverages
+50,bottled beer,1.8,Beverages
+51,dessert,1.15,Bakery & Sweets
+52,dog food,12.6,Pet Care
+53,specialty chocolate,18.8,Bakery & Sweets
+54,condensed milk,3.5,Dairy
+55,cleaner,11.8,Household & Hygiene
+56,white wine,14.2,Beverages
+57,meat,8.5,Fresh Food
+58,ice cream,1.8,Frozen & Processed Food
+59,hard cheese,4.5,Dairy
+60,cream cheese,6.3,Dairy
+61,liquor,8.5,Beverages
+62,pickled vegetables,2.7,Fresh Food
+63,liquor (appetizer),11.2,Beverages
+64,UHT-milk,2.1,Dairy
+65,candy,3.6,Bakery & Sweets
+66,onions,1.3,Fresh Food
+67,hair spray,5.4,Personal Care
+68,photo/film,11.9,Household & Hygiene
+69,domestic eggs,1.25,Fresh Food
+70,margarine,3.5,Pantry Staples
+71,shopping bags,5.12,Household & Hygiene
+72,salt,0.7,Pantry Staples
+73,oil,3.4,Pantry Staples
+74,whipped/sour cream,5.5,Dairy
+75,frozen vegetables,2.5,Frozen & Processed Food
+76,sliced cheese,4.2,Dairy
+77,dish cleaner,2.5,Household & Hygiene
+78,baking powder,1.8,Pantry Staples
+79,specialty cheese,12.14,Dairy
+80,salty snack,0.5,Snacks
+81,Instant food products,0.6,Frozen & Processed Food
+82,pet care,5.8,Pet Care
+83,white bread,0.3,Bakery & Sweets
+84,female sanitary products,2.5,Personal Care
+85,cling film/bags,2.2,Household & Hygiene
+86,soap,3.8,Household & Hygiene
+87,frozen chicken,3.5,Frozen & Processed Food
+88,house keeping products,8.5,Household & Hygiene
+89,spread cheese,2.5,Dairy
+90,decalcifier,2.8,Household & Hygiene
+91,frozen dessert,2.8,Frozen & Processed Food
+92,vinegar,1.5,Pantry Staples
+93,nuts/prunes,6.2,Fresh Food
+94,potato products,2.8,Frozen & Processed Food
+95,frozen fish,5.8,Frozen & Processed Food
+96,hygiene articles,7.5,Household & Hygiene
+97,artif. sweetener,2.1,Pantry Staples
+98,light bulbs,5.7,Household & Hygiene
+99,canned vegetables,5.7,Frozen & Processed Food
+100,chewing gum,0.5,Specialty & Seasonal
+101,canned fish,2.1,Frozen & Processed Food
+102,cookware,4.6,Household & Hygiene
+103,semi-finished bread,1.1,Frozen & Processed Food
+104,cat food,11.2,Pet Care
+105,bathroom cleaner,5.8,Household & Hygiene
+106,prosecco,20.1,Beverages
+107,liver loaf,8.5,Fresh Food
+108,zwieback,12.3,Snacks
+109,canned fruit,4.96,Frozen & Processed Food
+110,frozen fruits,2.5,Frozen & Processed Food
+111,brandy,15.8,Beverages
+112,baby cosmetics,25.5,Personal Care
+113,spices,1.2,Pantry Staples
+114,napkins,21.8,Household & Hygiene
+115,waffles,2.5,Bakery & Sweets
+116,sauces,2.45,Pantry Staples
+117,rum,5.2,Beverages
+118,chocolate marshmallow,4.13,Bakery & Sweets
+119,long life bakery product,9.9,Bakery & Sweets
+120,bags,19.5,Household & Hygiene
+121,sweet spreads,5.4,Bakery & Sweets
+122,soups,4.5,Frozen & Processed Food
+123,mustard,5.2,Pantry Staples
+124,specialty fat,4.5,Pantry Staples
+125,instant coffee,4.9,Frozen & Processed Food
+126,snack products,0.9,Snacks
+127,organic sausage,8.6,Fresh Food
+128,soft cheese,7.2,Dairy
+129,mayonnaise,1.8,Specialty & Seasonal
+130,dental care,11.45,Personal Care
+131,roll products,8.6,Specialty & Seasonal
+132,kitchen towels,4.83,Household & Hygiene
+133,flower soil/fertilizer,2.83,Household & Hygiene
+134,cereals,4.5,Snacks
+135,meat spreads,7.8,Fresh Food
+136,dishes,6.8,Specialty & Seasonal
+137,male cosmetics,10.6,Personal Care
+138,candles,2.7,Household & Hygiene
+139,whisky,28.5,Beverages
+140,tidbits,1.1,Snacks
+141,cooking chocolate,7.2,Bakery & Sweets
+142,seasonal products,5.4,Specialty & Seasonal
+143,liqueur,9.5,Specialty & Seasonal
+144,abrasive cleaner,6.38,Household & Hygiene
+145,syrup,4.3,Beverages
+146,ketchup,1.25,Pantry Staples
+147,cream,5.2,Dairy
+148,skin care,10.3,Personal Care
+149,rubbing alcohol,2.5,Household & Hygiene
+150,nut snack,4.9,Snacks
+151,cocoa drinks,2.1,Beverages
+152,softener,11.8,Household & Hygiene
+153,organic products,9.4,Personal Care
+154,cake bar,2.4,Bakery & Sweets
+155,honey,9.7,Bakery & Sweets
+156,jam,5.22,Bakery & Sweets
+157,kitchen utensil,8.1,Household & Hygiene
+158,flower (seeds),6.8,Household & Hygiene
+159,rice,11.1,Pantry Staples
+160,tea,8.7,Beverages
+161,salad dressing,5.9,Specialty & Seasonal
+162,specialty vegetables,6.5,Fresh Food
+163,pudding powder,4.9,Snacks
+164,ready soups,3.9,Frozen & Processed Food
+165,make up remover,3.4,Personal Care
+166,toilet cleaner,4.9,Household & Hygiene
+167,preservation products,6.75,Household & Hygiene
