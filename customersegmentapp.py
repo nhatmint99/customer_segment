@@ -158,12 +158,12 @@ def classify_customer(R, F, M):
     -> Thưởng bằng chương trình VIP, ưu đãi độc quyền 
     & Cho quyền truy cập sớm sản phẩm/dịch vụ mới 
     & Khuyến khích họ trở thành đại sứ thương hiệu"""
-    elif F >= 2 and R >= 2 and M >= 2:
+    elif F >= 3 and R >= 2 and M >= 2:
         return """Loyal Customers (Khách hàng trung thành tiềm năng) 
     -> Tăng cường gắn kết bằng ưu đãi định kỳ 
     & Cung cấp gói combo/bundles phù hợp 
     & Chăm sóc cá nhân hóa để đẩy lên nhóm VIP"""
-    elif R == 1 and F <= 1 and M <= 1:
+    elif R == 2 and F <= 1 and M <= 1:
         return """At Risk/ Lost (Khách hàng có nguy cơ rời bỏ) 
     -> Giảm giá sản phẩm yêu thích trước đây 
     & Tìm hiểu lý do họ ít quay lại (khảo sát) 
@@ -179,7 +179,7 @@ def classify_customer(R, F, M):
 # Classification from raw values (not quartiles)
 # ===============================
 def classify_customer_raw(recency, frequency, monetary,
-                          r_thresh=60, f_thresh=10, m_thresh=1000):
+                          r_thresh, f_thresh, m_thresh):
     """
     Phân loại khách hàng dựa trên giá trị R, F, M gốc.
     - recency: số ngày kể từ lần mua gần nhất
@@ -187,7 +187,7 @@ def classify_customer_raw(recency, frequency, monetary,
     - monetary: tổng chi tiêu - (đơn vị: nghìn đồng)
     Ngưỡng có thể điều chỉnh theo dữ liệu thực tế.
     """
-    if recency <= r_thresh and frequency >= f_thresh and monetary >= m_thresh:
+    if recency <= r_thresh/2 and frequency >= f_thresh and monetary >= m_thresh*1.5:
         return """VIP - Khách hàng trung thành, giá trị cao 
     -> Thưởng bằng chương trình VIP, ưu đãi độc quyền 
     & Cho quyền truy cập sớm sản phẩm/dịch vụ mới 
@@ -277,7 +277,7 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("### ⚙️ Thiết lập ngưỡng RFM (Raw Values)")
 r_thresh = st.sidebar.number_input("Ngưỡng Recency (ngày)", min_value=1, value=90)
 f_thresh = st.sidebar.number_input("Ngưỡng Frequency (số lần mua)", min_value=1, value=10)
-m_thresh = st.sidebar.number_input("Ngưỡng Monetary (tổng chi tiêu - đvt: nghìn đồng)", min_value=1, value=500)
+m_thresh = st.sidebar.number_input("Ngưỡng Monetary (tổng chi tiêu - đvt: nghìn đồng)", min_value=1, value=2000)
 st.sidebar.markdown("---")
 
 # ===============================
@@ -426,139 +426,124 @@ elif menu == "New Prediction / Analysis":
     - **Regular/ New Customer (High Recency, Low Frequency & Monetary)** 
     -> Just purchased or bought only once. Still deciding whether to stick with you.
     """)
-    option = st.radio("Chọn kiểu nhập dữ liệu:", ["Nhập điểm RFM (1–4)", "Nhập giá trị gốc R, F, M"])
-    if option == "Nhập điểm RFM (1–4)":
-    # ---------------------------
-    # Option 1: nhập điểm RFM
-    # ---------------------------
-            st.subheader("🔮 Dự đoán theo điểm RFM (1–4) - Single prediction")
+    tab = st.tabs(["RFM Manual Prediction", "KMeans Prediction (from Clustering)"])
+    with tab[0]:
+        st.subheader("RFM Manual Prediction")
+        option = st.radio("Chọn kiểu nhập dữ liệu:", ["Nhập điểm RFM (1–4)", "Nhập giá trị gốc R, F, M"])
+        if option == "Nhập điểm RFM (1–4)":
+        # ---------------------------
+        # Option 1: nhập điểm RFM
+        # ---------------------------
+                st.subheader("🔮 Dự đoán theo điểm RFM (1–4) - Single prediction")
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    R = st.slider("Recency Score (1–4)", 1, 4, 2)
+                with col2:
+                    F = st.slider("Frequency Score (1–4)", 1, 4, 2)
+                with col3:
+                    M = st.slider("Monetary Score (1–4)", 1, 4, 2)
+
+                if st.button("Predict by Score"):
+                    segment = classify_customer(R, F, M)
+                    st.success(f"🏷️ This customer belongs to: **{segment}**")
+
+                st.markdown("---")
+                st.subheader("📂 Bulk Prediction (File RFM Score)")
+                file = st.file_uploader("Tải lên file CSV/Excel với cột `R`, `F`, `M`", type=["csv","xlsx"])
+                if file:
+                    if file.name.endswith(".csv"):
+                        df_input = pd.read_csv(file)
+                    else:
+                        df_input = pd.read_excel(file)
+
+                    if {"R","F","M"}.issubset(df_input.columns):
+                        df_input["Segment"] = df_input.apply(lambda x: classify_customer(x["R"], x["F"], x["M"]), axis=1)
+                        st.dataframe(df_input.head(20))
+                        st.download_button(
+                            "Tải xuống dự đoán (RFM Score)",
+                            data=df_input.to_csv(index=False).encode("utf-8"),
+                            file_name="rfm_predictions_score.csv",
+                            mime="text/csv"
+                        )
+                    else:
+                        st.error("File phải chứa các cột `R`, `F`, `M`.")
+
+        # ---------------------------
+        # Option 2: nhập giá trị gốc
+        # ---------------------------
+        else: 
+            st.markdown("---")
+            st.subheader("🔮 Dự đoán theo giá trị gốc")
+
             col1, col2, col3 = st.columns(3)
             with col1:
-                R = st.slider("Recency Score (1–4)", 1, 4, 2)
+                recency_val = st.number_input("Recency (ngày kể từ lần mua gần nhất)", min_value=0, value=100)
             with col2:
-                F = st.slider("Frequency Score (1–4)", 1, 4, 2)
+                frequency_val = st.number_input("Frequency (số lần mua)", min_value=0, value=5)
             with col3:
-                M = st.slider("Monetary Score (1–4)", 1, 4, 2)
+                monetary_val = st.number_input("Monetary (tổng chi tiêu - đơn vị: nghìn đồng)", min_value=0, value=200)
 
-            if st.button("Predict by Score"):
-                segment = classify_customer(R, F, M)
+            if st.button("Predict by Raw Value"):
+                segment = classify_customer_raw(recency_val, frequency_val, monetary_val,
+                                                        r_thresh=r_thresh, f_thresh=f_thresh, m_thresh=m_thresh)
                 st.success(f"🏷️ This customer belongs to: **{segment}**")
 
             st.markdown("---")
-            st.subheader("📂 Bulk Prediction (File RFM Score)")
-            file = st.file_uploader("Tải lên file CSV/Excel với cột `R`, `F`, `M`", type=["csv","xlsx"])
+            st.subheader("📂 Bulk Prediction (File Raw Values)")
+            file = st.file_uploader("Tải lên file CSV/Excel với cột `R - Recency`, `F - Frequency`, `M - Monetary`", type=["csv","xlsx"])
             if file:
                 if file.name.endswith(".csv"):
                     df_input = pd.read_csv(file)
                 else:
                     df_input = pd.read_excel(file)
 
-                if {"R","F","M"}.issubset(df_input.columns):
-                    df_input["Segment"] = df_input.apply(lambda x: classify_customer(x["R"], x["F"], x["M"]), axis=1)
+                if {"Recency","Frequency","Monetary"}.issubset(df_input.columns):
+                    df_input["Segment"] = df_input.apply(
+                        lambda x: classify_customer_raw(
+                            x["Recency"], x["Frequency"], x["Monetary"],
+                            r_thresh=r_thresh, f_thresh=f_thresh, m_thresh=m_thresh
+                            ),
+                        axis=1
+                        )
                     st.dataframe(df_input.head(20))
                     st.download_button(
-                        "Tải xuống dự đoán (RFM Score)",
+                        "Tải xuống dự đoán (Raw Values)",
                         data=df_input.to_csv(index=False).encode("utf-8"),
-                        file_name="rfm_predictions_score.csv",
+                        file_name="rfm_predictions_raw.csv",
                         mime="text/csv"
                     )
                 else:
                     st.error("File phải chứa các cột `R`, `F`, `M`.")
+        with tab[1]:
+            st.title("💡 Recommendations by KMeans Clusters")
+            try:
+                # chạy lại phân cụm KMeans
+                customer_data, scaled_features = customer_features(df_products, df_trans)
 
-    # ---------------------------
-    # Option 2: nhập giá trị gốc
-    # ---------------------------
-    else: 
-        st.markdown("---")
-        st.subheader("🔮 Dự đoán theo giá trị gốc")
+                # Đếm số khách hàng theo cụm
+                cluster_counts = customer_data["cluster_kmeans"].value_counts().sort_index()
 
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            recency_val = st.number_input("Recency (ngày kể từ lần mua gần nhất)", min_value=0, value=100)
-        with col2:
-            frequency_val = st.number_input("Frequency (số lần mua)", min_value=0, value=5)
-        with col3:
-            monetary_val = st.number_input("Monetary (tổng chi tiêu - đơn vị: nghìn đồng)", min_value=0, value=200)
+                st.subheader("📊 Phân bố khách hàng theo cụm (KMeans)")
+                st.bar_chart(cluster_counts)
 
-        if st.button("Predict by Raw Value"):
-            segment = classify_customer_raw(recency_val, frequency_val, monetary_val,
-                                                    r_thresh=r_thresh, f_thresh=f_thresh, m_thresh=m_thresh)
-            st.success(f"🏷️ This customer belongs to: **{segment}**")
+                # Hiển thị bảng khách hàng mẫu
+                st.dataframe(customer_data[["Member_number","Recency","Frequency","Monetary","cluster_kmeans"]].head())
 
-        st.markdown("---")
-        st.subheader("📂 Bulk Prediction (File Raw Values)")
-        file = st.file_uploader("Tải lên file CSV/Excel với cột `R - Recency`, `F - Frequency`, `M - Monetary`", type=["csv","xlsx"])
-        if file:
-            if file.name.endswith(".csv"):
-                df_input = pd.read_csv(file)
-            else:
-                df_input = pd.read_excel(file)
+                # Gợi ý chiến lược theo từng cụm
+                st.subheader("💡 Gợi ý chiến lược kinh doanh")
 
-            if {"Recency","Frequency","Monetary"}.issubset(df_input.columns):
-                df_input["Segment"] = df_input.apply(
-                    lambda x: classify_customer_raw(
-                        x["Recency"], x["Frequency"], x["Monetary"],
-                        r_thresh=r_thresh, f_thresh=f_thresh, m_thresh=m_thresh
-                        ),
-                    axis=1
-                    )
-                st.dataframe(df_input.head(20))
-                st.download_button(
-                    "Tải xuống dự đoán (Raw Values)",
-                    data=df_input.to_csv(index=False).encode("utf-8"),
-                    file_name="rfm_predictions_raw.csv",
-                    mime="text/csv"
-                )
-            else:
-                st.error("File phải chứa các cột `R`, `F`, `M`.")
+                recommendations = {
+                    0: "Cluster 0 – Có thể là khách mới: Khuyến mãi chào mừng, ưu đãi lần mua đầu.",
+                    1: "Cluster 1 – Khách trung thành giá trị cao: Chương trình VIP, chăm sóc cá nhân hóa.",
+                    2: "Cluster 2 – Khách ít tương tác, chi tiêu thấp: Gửi chiến dịch tái kích hoạt, giảm giá.",
+                    3: "Cluster 3 – Khách chi tiêu nhiều nhưng ít mua: Khuyến khích mua thường xuyên, gợi ý combo."
+                }
 
-        # st.markdown("---")
-        # st.title("📂 Bulk Prediction (Upload file)")
-        # option = st.radio("Chọn kiểu nhập dữ liệu:", ["Nhập điểm RFM (1–4)", "Nhập giá trị gốc R, F, M"])
-        # if option == "Điểm RFM (1–4)":
-        #     st.write("Tải lên một tệp CSV/Excel với các cột `R - Recency`, `F - Frequency`, `M - Monetary` để phân loại khách hàng.")
+                for cluster, note in recommendations.items():
+                    st.markdown(f"**Cụm {cluster}:** {note}")
 
-        #     file = st.file_uploader("Tải lên CSV hoặc Excel", type=["csv","xlsx"])
-        #     if file:
-        #         if file.name.endswith(".csv"):
-        #             df_input = pd.read_csv(file)
-        #         else:
-        #             df_input = pd.read_excel(file)
-
-        #         if {"R","F","M"}.issubset(df_input.columns):
-        #             df_input["Segment"] = df_input.apply(lambda x: classify_customer(x["R"], x["F"], x["M"]), axis=1)
-        #             st.dataframe(df_input.head(20))
-        #             st.download_button(
-        #                 "Tải xuống dự đoán",
-        #                 data=df_input.to_csv(index=False).encode("utf-8"),
-        #                 file_name="rfm_predictions.csv",
-        #                 mime="text/csv"
-                    # )
-        #         else:
-        #             st.error("File phải chứa các cột `R`, `F`, `M`.")
-        # else:
-        #     st.write("📂 Giá trị RFM gốc")
-        #     file = st.file_uploader("Tải lên file CSV/Excel với cột `R - Recency`, `F - Frequency`, `M - Monetary`", type=["csv","xlsx"])
-        #     if file:
-        #         if file.name.endswith(".csv"):
-        #             df_input = pd.read_csv(file)
-        #         else:
-        #             df_input = pd.read_excel(file)
-
-        #         if {"Recency","Frequency","Monetary"}.issubset(df_input.columns):
-        #             df_input["Segment"] = df_input.apply(
-        #                 lambda x: classify_customer_raw(x["Recency"], x["Frequency"], x["Monetary"]),
-        #                 axis=1
-        #             )
-        #             st.dataframe(df_input.head(20))
-        #             st.download_button(
-        #                 "Tải xuống dự đoán (Raw Values)",
-        #                 data=df_input.to_csv(index=False).encode("utf-8"),
-        #                 file_name="rfm_predictions_raw.csv",
-        #                 mime="text/csv"
-        #             )
-        #         else:
-        #             st.error("File phải chứa các cột `R`, `F`, `M`.")
+            except Exception as e:
+                st.error(f"❌ Lỗi khi tạo recommendation từ KMeans: {e}")
 # ===============================
 # Introduction
 # ===============================
