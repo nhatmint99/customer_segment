@@ -573,7 +573,7 @@ elif menu == "Introduction":
     """)
     st.image("RFM_clustering.png", caption="RFM Clustering")
     st.subheader("🔄 Project Pipeline")
-    stages = [
+    st.write = [
         ("Business Problem", "Xác định mục tiêu kinh doanh, ví dụ: tăng doanh thu, chăm sóc khách hàng."),
         ("Data Preparation", "Thu thập & làm sạch dữ liệu sản phẩm và giao dịch."),
         ("RFM Analysis", "Tính toán Recency, Frequency, Monetary cho từng khách hàng."),
@@ -581,16 +581,4 @@ elif menu == "Introduction":
         ("Evaluation", "Đánh giá bằng Silhouette, ARI, NMI để so sánh mô hình."),
         ("Recommendation & Deployment", "Đưa ra gợi ý kinh doanh cho từng nhóm khách hàng và triển khai hệ thống.")
     ]
-
-    fig, ax = plt.subplots(figsize=(6,10))
-    ax.axis("off")
-
-    for i, (stage, desc) in enumerate(stages):
-        y = 1 - i*0.15
-        ax.text(0.5, y, f"{stage}\n{desc}", ha="center", va="center",
-                fontsize=9, bbox=dict(boxstyle="round,pad=0.5", fc="lightyellow"))
-        if i < len(stages)-1:
-            ax.annotate("", xy=(0.5, y-0.07), xytext=(0.5, y-0.15+0.07),
-                        arrowprops=dict(arrowstyle="->", lw=2, color="black"))
-
-    st.pyplot(fig, width=600)
+    st.image('pipeline.png', caption = 'Project Pipeline')
