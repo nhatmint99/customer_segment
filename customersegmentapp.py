@@ -571,11 +571,11 @@ elif menu == "Introduction":
     st.image("RFM_clustering.png", caption="RFM Clustering")
     st.subheader("🔄 Project Pipeline")
     st.markdown("""
-        Business Problem", "Xác định mục tiêu kinh doanh, ví dụ: tăng doanh thu, chăm sóc khách hàng.
-        Data Preparation", "Thu thập & làm sạch dữ liệu sản phẩm và giao dịch.
-        RFM Analysis", "Tính toán Recency, Frequency, Monetary cho từng khách hàng.
-        Clustering Models", "Thử nhiều mô hình: KMeans, GMM, Agglomerative, Hierarchical, SparkKMeans.
-        Evaluation", "Đánh giá bằng Silhouette, ARI, NMI để so sánh mô hình.
-        Recommendation & Deployment", "Đưa ra gợi ý kinh doanh cho từng nhóm khách hàng và triển khai hệ thống."""
+        - Business Problem", "Xác định mục tiêu kinh doanh, ví dụ: tăng doanh thu, chăm sóc khách hàng.
+        - Data Preparation", "Thu thập & làm sạch dữ liệu sản phẩm và giao dịch.
+        - RFM Analysis", "Tính toán Recency, Frequency, Monetary cho từng khách hàng.
+        - Clustering Models", "Thử nhiều mô hình: KMeans, GMM, Agglomerative, Hierarchical, SparkKMeans.
+        - Evaluation", "Đánh giá bằng Silhouette, ARI, NMI để so sánh mô hình.
+        - Recommendation & Deployment", "Đưa ra gợi ý kinh doanh cho từng nhóm khách hàng và triển khai hệ thống."""
     )
     st.image('pipeline.png', caption = 'Project Pipeline')
