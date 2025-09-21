@@ -305,11 +305,8 @@ elif menu == "Evaluation & Report & Comparison":
     st.title("📊 Evaluation & Report & Comparison")
     st.image('segment1.png', caption='Customer Segment Pros', width=600)
 
-    tab = st.tabs([
-        "RFM Analysis, Segmentation & Visualization",
-        "Clustering Model Comparison & Evaluation"
-    ])
-
+    tab = st.tabs(["RFM Analysis, Segmentation & Visualization",
+                "Clustering Model Comparison & Evaluation"])
     # ---------------- Tab 1 ----------------
     with tab[0]:
         # Ưu tiên dữ liệu upload
