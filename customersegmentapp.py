@@ -285,12 +285,12 @@ st.sidebar.markdown("---")
 # ===============================
 if menu == "Business Problem":
     st.title("📌 Business Problem")
-    st.write("""
+    st.markdown("""
     Cửa hàng X chủ yếu bán các sản phẩm thiết yếu cho khách hàng như:
-    rau, củ, quả, thịt, cá, trứng, sữa, nước giải khát...\n
+    rau, củ, quả, thịt, cá, trứng, sữa, nước giải khát...
     Khách hàng của cửa hàng thường là khách hàng mua lẻ.
     """)
-    st.write("""-> Chủ cửa hàng X mong muốn có thể bán được nhiều hàng hóa hơn
+    st.markdown("""-> Chủ cửa hàng X mong muốn có thể bán được nhiều hàng hóa hơn
     cũng như giới thiệu sản phẩm đến đúng đối tượng khách hàng,
     từ đó tăng doanh thu và lợi nhuận.
     Đồng thời, việc phân khúc khách hàng cũng giúp cửa hàng có chiến lược
