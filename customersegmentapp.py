@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.mixture import GaussianMixture
 from scipy.cluster.hierarchy import linkage, fcluster
-from pyspark.sql import SparkSession
+# from pyspark.sql import SparkSession
 # from pyspark.ml.feature import VectorAssembler, StandardScaler as SparkScaler
 # from pyspark.ml.clustering import KMeans as SparkKMeans
 from sklearn.metrics import silhouette_score, adjusted_rand_score, normalized_mutual_info_score
