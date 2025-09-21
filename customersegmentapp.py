@@ -154,25 +154,25 @@ except Exception as e:
 # ===============================
 def classify_customer(R, F, M):
     if R >= 3 and F >= 3 and M == 4:
-        return """VIP - Khách hàng trung thành, giá trị cao \n
-    -> Thưởng bằng chương trình VIP, ưu đãi độc quyền \n
-    & Cho quyền truy cập sớm sản phẩm/dịch vụ mới \n
+        return """VIP - Khách hàng trung thành, giá trị cao 
+    -> Thưởng bằng chương trình VIP, ưu đãi độc quyền 
+    & Cho quyền truy cập sớm sản phẩm/dịch vụ mới 
     & Khuyến khích họ trở thành đại sứ thương hiệu"""
     elif F >= 2 and R >= 2 and M >= 2:
-        return """Loyal Customers (Khách hàng trung thành tiềm năng) \n
-    -> Tăng cường gắn kết bằng ưu đãi định kỳ \n
-    & Cung cấp gói combo/bundles phù hợp \n
+        return """Loyal Customers (Khách hàng trung thành tiềm năng) 
+    -> Tăng cường gắn kết bằng ưu đãi định kỳ 
+    & Cung cấp gói combo/bundles phù hợp 
     & Chăm sóc cá nhân hóa để đẩy lên nhóm VIP"""
     elif R == 1 and F <= 1 and M <= 1:
-        return """At Risk/ Lost (Khách hàng có nguy cơ rời bỏ) \n
-    -> Giảm giá sản phẩm yêu thích trước đây \n
-    & Tìm hiểu lý do họ ít quay lại (khảo sát) \n
-    & Cung cấp ưu đãi đặc biệt để khuyến khích họ quay lại \n
+        return """At Risk/ Lost (Khách hàng có nguy cơ rời bỏ) 
+    -> Giảm giá sản phẩm yêu thích trước đây 
+    & Tìm hiểu lý do họ ít quay lại (khảo sát) 
+    & Cung cấp ưu đãi đặc biệt để khuyến khích họ quay lại 
     & Tạo cảm giác cấp bách với ưu đãi giới hạn thời gian"""
     else:
-        return """New/ Regular Customers (Khách hàng vãng lai) \n
-    -> Chiến dịch win-back với khuyến mãi lớn \n
-    & Tạo nội dung khuyến mãi để thu hút khách hàng mới \n
+        return """New/ Regular Customers (Khách hàng vãng lai) 
+    -> Chiến dịch win-back với khuyến mãi lớn 
+    & Tạo nội dung khuyến mãi để thu hút khách hàng mới 
     & Xin đánh giá sản phẩm/dịch vụ để cải thiện """
 
 # ===============================
@@ -188,25 +188,25 @@ def classify_customer_raw(recency, frequency, monetary,
     Ngưỡng có thể điều chỉnh theo dữ liệu thực tế.
     """
     if recency <= r_thresh and frequency >= f_thresh and monetary >= m_thresh:
-        return """VIP - Khách hàng trung thành, giá trị cao \n
-    -> Thưởng bằng chương trình VIP, ưu đãi độc quyền \n
-    & Cho quyền truy cập sớm sản phẩm/dịch vụ mới \n
+        return """VIP - Khách hàng trung thành, giá trị cao 
+    -> Thưởng bằng chương trình VIP, ưu đãi độc quyền 
+    & Cho quyền truy cập sớm sản phẩm/dịch vụ mới 
     & Khuyến khích họ trở thành đại sứ thương hiệu"""
     elif recency <= r_thresh and frequency >= f_thresh/2:
-        return """Loyal Customers (Khách hàng trung thành tiềm năng) \n
-    -> Tăng cường gắn kết bằng ưu đãi định kỳ \n
-    & Cung cấp gói combo/bundles phù hợp \n
+        return """Loyal Customers (Khách hàng trung thành tiềm năng) 
+    -> Tăng cường gắn kết bằng ưu đãi định kỳ 
+    & Cung cấp gói combo/bundles phù hợp 
     & Chăm sóc cá nhân hóa để đẩy lên nhóm VIP"""
     elif recency > r_thresh*3 and frequency <= f_thresh/2 and monetary <= m_thresh/2:
-        return """At Risk/ Lost (Khách hàng có nguy cơ rời bỏ) \n
-    -> Giảm giá sản phẩm yêu thích trước đây \n
-    & Tìm hiểu lý do họ ít quay lại (khảo sát) \n
-    & Cung cấp ưu đãi đặc biệt để khuyến khích họ quay lại \n
+        return """At Risk/ Lost (Khách hàng có nguy cơ rời bỏ) 
+    -> Giảm giá sản phẩm yêu thích trước đây 
+    & Tìm hiểu lý do họ ít quay lại (khảo sát) 
+    & Cung cấp ưu đãi đặc biệt để khuyến khích họ quay lại 
     & Tạo cảm giác cấp bách với ưu đãi giới hạn thời gian"""
     else:
-        return """New/ Regular Customers (Khách hàng vãng lai) \n
-    -> Chiến dịch win-back với khuyến mãi lớn \n
-    & Tạo nội dung khuyến mãi để thu hút khách hàng mới \n
+        return """New/ Regular Customers (Khách hàng vãng lai) 
+    -> Chiến dịch win-back với khuyến mãi lớn 
+    & Tạo nội dung khuyến mãi để thu hút khách hàng mới 
     & Xin đánh giá sản phẩm/dịch vụ để cải thiện """
 
 # Optimized clustering evaluation and comparison
@@ -388,27 +388,27 @@ elif menu == "Evaluation & Report & Comparison":
 
     except Exception as e:
         st.error(f"❌ Lỗi khi tính toán clustering: {e}")
-        st.write("""🔹 Kết quả so sánh nhanh
+        st.markdown("""🔹 Kết quả so sánh nhanh
 - KMeans & SparkKMeans:
 Silhouette tốt nhất (≈0.285).
-ARI & NMI gần 1.0 → \n 
-\t Hai phương pháp này gần như giống hệt nhau.
-\n \t SparkKMeans có lợi thế về khả năng mở rộng (phù hợp khi dữ liệu lớn). \n
+ARI & NMI gần 1.0 →
+Hai phương pháp này gần như giống hệt nhau.
+SparkKMeans có lợi thế về khả năng mở rộng (phù hợp khi dữ liệu lớn).
 - Agglomerative & Hierarchical:
 Kết quả giống hệt nhau (ARI = 1.0, NMI = 1.0).
-\n \t Tuy nhiên, Silhouette thấp hơn (≈0.216). \n
-\t Ưu điểm: trực quan hoá bằng dendrogram, dễ giải thích mối quan hệ phân cấp.
+Tuy nhiên, Silhouette thấp hơn (≈0.216).
+Ưu điểm: trực quan hoá bằng dendrogram, dễ giải thích mối quan hệ phân cấp.
 - GMM (Gaussian Mixture):
 Silhouette thấp nhất (≈0.159).
-\n \t ARI & NMI với các phương pháp khác đều thấp → tạo ra phân cụm rất khác biệt.
-\n \t Chỉ phù hợp nếu muốn phân cụm mềm (soft clustering), tức một khách hàng có thể thuộc nhiều cụm.
-\n -> 🔹 Khuyến nghị cuối cùng
-\n - Chọn KMeans (hoặc SparkKMeans nếu dữ liệu lớn) làm phương pháp chính để phân cụm RFM.
-\n \t Lý do: điểm Silhouette tốt nhất, tính ổn định cao, dễ áp dụng cho business.
+ARI & NMI với các phương pháp khác đều thấp → tạo ra phân cụm rất khác biệt.
+Chỉ phù hợp nếu muốn phân cụm mềm (soft clustering), tức một khách hàng có thể thuộc nhiều cụm.
+-> 🔹 Khuyến nghị cuối cùng
+- Chọn KMeans (hoặc SparkKMeans nếu dữ liệu lớn) làm phương pháp chính để phân cụm RFM.
+Lý do: điểm Silhouette tốt nhất, tính ổn định cao, dễ áp dụng cho business.
 SparkKMeans đặc biệt phù hợp nếu dữ liệu ngày càng mở rộng (big data).
-\n - Dùng Agglomerative/Hierarchical như một phương pháp bổ trợ để kiểm tra lại kết quả và trực quan hóa mối quan hệ phân cụm.
-\n - GMM có thể thử nghiệm nếu muốn kiểm tra xem khách hàng có thể thuộc nhiều nhóm đồng thời (phân tích nâng cao).
-\n - Có thể dùng RFM Manual cho khả năng tương tác của end-user dễ hơn
+- Dùng Agglomerative/Hierarchical như một phương pháp bổ trợ để kiểm tra lại kết quả và trực quan hóa mối quan hệ phân cụm.
+- GMM có thể thử nghiệm nếu muốn kiểm tra xem khách hàng có thể thuộc nhiều nhóm đồng thời (phân tích nâng cao).
+- Có thể dùng RFM Manual cho khả năng tương tác của end-user dễ hơn
 """)
 
 # ===============================
@@ -417,13 +417,13 @@ SparkKMeans đặc biệt phù hợp nếu dữ liệu ngày càng mở rộng (
 elif menu == "New Prediction / Analysis":
     st.title("🔮 Customer Prediction (Manual Input)")
     st.write("""- **VIP (High Frequency, High Monetary, Low Recency)** 
-\n -> Shop very often, spend a lot, and bought recently.
-\n - **Loyal Customer (Medium Frequency & Monetary, Recent Buyers)** 
-\n -> Bought recently, moderate spending, could become loyal. They’re on the path to becoming VIP.
-\n - **At Risk/ Lost Customer (Low Frequency, Low Monetary, High Recency)** 
-\n -> Send reminders, discounts to reactivate.  
-\n - **Regular/ New Customer (High Recency, Low Frequency & Monetary)** 
-\n -> Just purchased or bought only once. Still deciding whether to stick with you.""")
+-> Shop very often, spend a lot, and bought recently.
+- **Loyal Customer (Medium Frequency & Monetary, Recent Buyers)** 
+-> Bought recently, moderate spending, could become loyal. They’re on the path to becoming VIP.
+- **At Risk/ Lost Customer (Low Frequency, Low Monetary, High Recency)** 
+-> Send reminders, discounts to reactivate.  
+- **Regular/ New Customer (High Recency, Low Frequency & Monetary)** 
+-> Just purchased or bought only once. Still deciding whether to stick with you.""")
     option = st.radio("Chọn kiểu nhập dữ liệu:", ["Nhập điểm RFM (1–4)", "Nhập giá trị gốc R, F, M"])
     if option == "Nhập điểm RFM (1–4)":
     # ---------------------------
@@ -570,12 +570,12 @@ elif menu == "Introduction":
     """)
     st.image("RFM_clustering.png", caption="RFM Clustering")
     st.subheader("🔄 Project Pipeline")
-    st.write = [
-        ("Business Problem", "Xác định mục tiêu kinh doanh, ví dụ: tăng doanh thu, chăm sóc khách hàng."),
-        ("Data Preparation", "Thu thập & làm sạch dữ liệu sản phẩm và giao dịch."),
-        ("RFM Analysis", "Tính toán Recency, Frequency, Monetary cho từng khách hàng."),
-        ("Clustering Models", "Thử nhiều mô hình: KMeans, GMM, Agglomerative, Hierarchical, SparkKMeans."),
-        ("Evaluation", "Đánh giá bằng Silhouette, ARI, NMI để so sánh mô hình."),
-        ("Recommendation & Deployment", "Đưa ra gợi ý kinh doanh cho từng nhóm khách hàng và triển khai hệ thống.")
-    ]
+    st.markdown = (
+        """Business Problem", "Xác định mục tiêu kinh doanh, ví dụ: tăng doanh thu, chăm sóc khách hàng.
+        Data Preparation", "Thu thập & làm sạch dữ liệu sản phẩm và giao dịch.
+        RFM Analysis", "Tính toán Recency, Frequency, Monetary cho từng khách hàng.
+        Clustering Models", "Thử nhiều mô hình: KMeans, GMM, Agglomerative, Hierarchical, SparkKMeans.
+        Evaluation", "Đánh giá bằng Silhouette, ARI, NMI để so sánh mô hình.
+        Recommendation & Deployment", "Đưa ra gợi ý kinh doanh cho từng nhóm khách hàng và triển khai hệ thống."""
+    )
     st.image('pipeline.png', caption = 'Project Pipeline')
