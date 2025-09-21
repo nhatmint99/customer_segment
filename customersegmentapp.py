@@ -416,14 +416,16 @@ SparkKMeans đặc biệt phù hợp nếu dữ liệu ngày càng mở rộng (
 # ===============================
 elif menu == "New Prediction / Analysis":
     st.title("🔮 Customer Prediction (Manual Input)")
-    st.write("""- **VIP (High Frequency, High Monetary, Low Recency)** 
--> Shop very often, spend a lot, and bought recently.
-- **Loyal Customer (Medium Frequency & Monetary, Recent Buyers)** 
--> Bought recently, moderate spending, could become loyal. They’re on the path to becoming VIP.
-- **At Risk/ Lost Customer (Low Frequency, Low Monetary, High Recency)** 
--> Send reminders, discounts to reactivate.  
-- **Regular/ New Customer (High Recency, Low Frequency & Monetary)** 
--> Just purchased or bought only once. Still deciding whether to stick with you.""")
+    st.markdown("""
+    - **VIP (High Frequency, High Monetary, Low Recency)** 
+    -> Shop very often, spend a lot, and bought recently.
+    - **Loyal Customer (Medium Frequency & Monetary, Recent Buyers)** 
+    -> Bought recently, moderate spending, could become loyal. They’re on the path to becoming VIP.
+    - **At Risk/ Lost Customer (Low Frequency, Low Monetary, High Recency)** 
+    -> Send reminders, discounts to reactivate.  
+    - **Regular/ New Customer (High Recency, Low Frequency & Monetary)** 
+    -> Just purchased or bought only once. Still deciding whether to stick with you.
+    """)
     option = st.radio("Chọn kiểu nhập dữ liệu:", ["Nhập điểm RFM (1–4)", "Nhập giá trị gốc R, F, M"])
     if option == "Nhập điểm RFM (1–4)":
     # ---------------------------
